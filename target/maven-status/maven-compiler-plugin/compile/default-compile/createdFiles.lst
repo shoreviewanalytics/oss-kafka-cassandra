@@ -1,0 +1,9 @@
+com/github/shoreviewanalytics/kafka/producer/VideoProducer.class
+com/github/shoreviewanalytics/kafka/consumer/VideoConsumerAndSenderWithThread$ConsumerThreadRunnable.class
+com/github/shoreviewanalytics/kafka/consumer/VideoConsumerAndSenderWithThread.class
+com/github/shoreviewanalytics/cassandra/CassandraVideoWriter.class
+com/github/shoreviewanalytics/kafka/producer/Video.class
+com/github/shoreviewanalytics/kafka/producer/CSVTester.class
+com/github/shoreviewanalytics/cassandra/CassandraDDL.class
+com/github/shoreviewanalytics/cassandra/CassandraConnector.class
+com/github/shoreviewanalytics/Run.class

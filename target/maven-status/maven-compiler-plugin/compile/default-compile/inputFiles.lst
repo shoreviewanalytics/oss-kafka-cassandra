@@ -1,0 +1,8 @@
+/media/sf_PNY480/javacode/osskafkacassandra/src/main/java/com/github/shoreviewanalytics/cassandra/CassandraDDL.java
+/media/sf_PNY480/javacode/osskafkacassandra/src/main/java/com/github/shoreviewanalytics/cassandra/CassandraConnector.java
+/media/sf_PNY480/javacode/osskafkacassandra/src/main/java/com/github/shoreviewanalytics/kafka/producer/Video.java
+/media/sf_PNY480/javacode/osskafkacassandra/src/main/java/com/github/shoreviewanalytics/kafka/producer/CSVTester.java
+/media/sf_PNY480/javacode/osskafkacassandra/src/main/java/com/github/shoreviewanalytics/Run.java
+/media/sf_PNY480/javacode/osskafkacassandra/src/main/java/com/github/shoreviewanalytics/kafka/producer/VideoProducer.java
+/media/sf_PNY480/javacode/osskafkacassandra/src/main/java/com/github/shoreviewanalytics/cassandra/CassandraVideoWriter.java
+/media/sf_PNY480/javacode/osskafkacassandra/src/main/java/com/github/shoreviewanalytics/kafka/consumer/VideoConsumerAndSenderWithThread.java
