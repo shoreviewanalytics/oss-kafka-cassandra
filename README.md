@@ -4,8 +4,13 @@ This application is an example of how to create a Kafka producer and a consumer 
 
 ## Prerequisites:
 
-In order to run this example it is necessary to have a Kafka cluster as well as Cassandra cluster that is SSL enabled.  The source code uses a .pem file to access a Cassandra cluster using SSL.  
+In order to run this example it is necessary to have a Kafka single or multi node cluster as well as Cassandra single node or multi node cluster that is SSL enabled.  The source code uses a .pem file to access a Cassandra cluster using SSL.  It will be necessary to recompile the code adding your specific environment values.  For example, the CassandraConnector class has a connect() method where you pass in values specific to your environment.  
 
+### Compile and Package
+
+```
+mvn compile package
+```
 ### Step 1 - produce messages
 
 ```
