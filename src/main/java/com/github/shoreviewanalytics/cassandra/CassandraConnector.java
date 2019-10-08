@@ -1,13 +1,10 @@
 package com.github.shoreviewanalytics.cassandra;
 
 import com.datastax.oss.driver.api.core.CqlSession;
-import com.datastax.driver.core.*;
 import com.datastax.oss.driver.api.core.CqlSessionBuilder;
-import com.datastax.oss.driver.internal.core.auth.PlainTextAuthProvider;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.InetSocketAddress;
 import java.security.KeyStore;
@@ -48,14 +45,12 @@ public class CassandraConnector {
         String password = "cassandra";
         CqlSessionBuilder builder = CqlSession.builder();
         builder.withAuthCredentials(username,password);
+        builder.withSslContext(loadCaCert());
         builder.addContactPoint(new InetSocketAddress(node, port));
         builder.withLocalDatacenter(dataCenter);
         builder.withKeyspace("KAFKA_EXAMPLES");
-        builder.withSslContext(loadCaCert());
-
 
         session = builder.build();
-
 
     }
 

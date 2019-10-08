@@ -1,8 +1,5 @@
 package com.github.shoreviewanalytics.kafka.producer;
 
-
-import org.apache.commons.lang.StringEscapeUtils;
-
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -20,8 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 public class VideoProducer {
@@ -43,9 +38,6 @@ public class VideoProducer {
         ObjectMapper objectMapper = new ObjectMapper();
 
         try (
-                // FileReader fileReader = new FileReader("src/main/resources/videos_by_title_year.csv");
-                // BufferedReader reader = new BufferedReader(fileReader);
-
                 InputStream is = VideoProducer.class.getResourceAsStream("/videos_by_title_year.csv");
                 BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 

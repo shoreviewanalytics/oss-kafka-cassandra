@@ -29,32 +29,12 @@ public class CassandraDDL {
     }
 
     public void createContinentTable(String keyspace, String tablename) {
-//        CreateTableWithOptions createTable = SchemaBuilder.createTable(tablename).ifNotExists()
-//                .withPartitionKey("recordid", DataTypes.UUID)
-//                .withClusteringColumn("order", DataTypes.INT)
-//                .withColumn("continent", DataTypes.TEXT)
-//                .withClusteringOrder("order", ClusteringOrder.ASC);
-
         CreateTableWithOptions createTable = SchemaBuilder.createTable(keyspace, tablename).ifNotExists()
                 .withPartitionKey("recordid", DataTypes.INT)
                 .withColumn("continent", DataTypes.TEXT);
 
-
-        System.out.println("The CQL is " + createTable.build().toString());
-
         executeStatement(createTable.build(), keyspace);
     }
-    /*
-    CREATE TABLE videos_by_title_year (
-title TEXT,
-added_year INT,
-added_date TIMESTAMP,
-description TEXT,
-user_id UUID,
-video_id TIMEUUID,
-PRIMARY KEY ((title, added_year))
-);
-     */
     public void createVideoTable(String keyspace, String tablename) {
 
         CreateTableWithOptions createTable = SchemaBuilder.createTable(keyspace, tablename).ifNotExists()
@@ -65,8 +45,6 @@ PRIMARY KEY ((title, added_year))
                 .withColumn("user_id",DataTypes.UUID)
                 .withColumn("video_id",DataTypes.TIMEUUID);
 
-        System.out.println("The CQL is " + createTable.build().toString());
-
         executeStatement(createTable.build(), keyspace);
     }
 
@@ -74,7 +52,6 @@ PRIMARY KEY ((title, added_year))
         if (keyspace != null) {
             statement.setKeyspace(CqlIdentifier.fromCql(keyspace));
         }
-
         return session.execute(statement);
     }
 
