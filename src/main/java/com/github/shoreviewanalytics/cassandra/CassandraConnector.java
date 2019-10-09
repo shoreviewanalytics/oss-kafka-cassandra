@@ -18,7 +18,7 @@ public class CassandraConnector {
         InputStream fis = null;
         X509Certificate caCert;
         try {
-            fis = CassandraConnector.class.getResourceAsStream("/client.pem");
+            fis = CassandraConnector.class.getResourceAsStream("/cassandra.pem");
             caCert = (X509Certificate) cf.generateCertificate(fis);
         } finally {
             if (fis != null) {
@@ -34,7 +34,7 @@ public class CassandraConnector {
 
         SSLContext sslContext = SSLContext.getInstance("TLS");
         sslContext.init(null, tmf.getTrustManagers(), null);
-        return sslContext; // RemoteEndpointAwareJdkSSLOptions.builder().withSSLContext(sslContext).build();
+        return sslContext;
     }
 
     private CqlSession session;

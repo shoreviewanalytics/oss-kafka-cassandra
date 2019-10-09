@@ -29,6 +29,14 @@ public class VideoProducer {
         Properties props = new Properties();
         props.setProperty("bootstrap.servers", brokers);
         props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, brokers);
+        props.put("security.protocol", "SSL");
+        props.put("ssl.endpoint.identification.algorithm", "");
+        props.put("ssl.truststore.location", "/home/kafka/Downloads/kafka.service/client.truststore.jks");
+        props.put("ssl.truststore.password", "audiovox1");
+        props.put("ssl.keystore.type", "PKCS12");
+        props.put("ssl.keystore.location", "/home/kafka/Downloads/kafka.service/client.keystore.p12");
+        props.put("ssl.keystore.password", "audiovox1");
+        props.put("ssl.key.password", "audiovox1");
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class.getName());
         props.put(ProducerConfig.ACKS_CONFIG, "1");

@@ -20,8 +20,6 @@ import java.util.concurrent.CountDownLatch;
 public class VideoConsumerAndSenderWithThread {
 
     private static final Logger logger = LoggerFactory.getLogger(VideoConsumerAndSenderWithThread.class);
-
-    private static final Integer TOTAL_RECORDS = 430; // set the total number of records to consume
     private static final Vector<Video> vectorOfVideos = new Vector<>();
 
     public static void consume(String brokers, String groupId, String topicName) {
@@ -86,16 +84,24 @@ public class VideoConsumerAndSenderWithThread {
 
         ConsumerThreadRunnable(String brokers, String groupId, String topicName, CountDownLatch latch ) {
             this.latch = latch;
-            Properties prop = new Properties();
+            Properties props = new Properties();
 
-            prop.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, brokers);
-            prop.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.ByteArrayDeserializer");
-            prop.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.connect.json.JsonDeserializer");
-            prop.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
-            prop.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+            props.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, brokers);
+            props.put("security.protocol", "SSL");
+            props.put("ssl.endpoint.identification.algorithm", "");
+            props.put("ssl.truststore.location", "/home/kafka/Downloads/kafka.service/client.truststore.jks");
+            props.put("ssl.truststore.password", "audiovox1");
+            props.put("ssl.keystore.type", "PKCS12");
+            props.put("ssl.keystore.location", "/home/kafka/Downloads/kafka.service/client.keystore.p12");
+            props.put("ssl.keystore.password", "audiovox1");
+            props.put("ssl.key.password", "audiovox1");
+            props.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.ByteArrayDeserializer");
+            props.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.connect.json.JsonDeserializer");
+            props.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
+            props.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
 
-            consumer = new KafkaConsumer<>(prop);
+            consumer = new KafkaConsumer<>(props);
 
             //consumer.subscribe(Collections.singleton(topicName));
             //or multiple topics comma delimited
@@ -112,7 +118,7 @@ public class VideoConsumerAndSenderWithThread {
 
              try {
 
-                 int numberOfMessagesToRead = 429;
+                 int numberOfMessagesToRead = 429;  // kafka stores messages from 0 to ...n
                  boolean keepOnReading = true;
                  int numberOfMessagesReadSoFar = 0;
 

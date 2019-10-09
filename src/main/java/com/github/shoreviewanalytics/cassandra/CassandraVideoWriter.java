@@ -14,13 +14,13 @@ public class CassandraVideoWriter {
     public void WriteToCassandra(Vector records) throws Exception {
 
         CassandraConnector connector = new CassandraConnector();
-        connector.connect("10.1.10.60", 9042, "dc1");
+        connector.connect("cassandra-23daba12-shoreviewanalytics-d9c3.aivencloud.com", 12641, "aiven");
         CqlSession session = connector.getSession();
 
 
         try {
             CassandraDDL cassandraDDL = new CassandraDDL(session);
-            //cassandraDDL.createKeyspace("KAFKA_EXAMPLES", 1);
+            cassandraDDL.createKeyspace("KAFKA_EXAMPLES", 1);
             //cassandraDDL.useKeyspace("KAFKA_EXAMPLES");
             cassandraDDL.createVideoTable("KAFKA_EXAMPLES", "VIDEOS_BY_TITLE_YEAR");
         } catch (com.datastax.oss.driver.api.core.servererrors.QueryExecutionException ex) {
